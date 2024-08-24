@@ -37,6 +37,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
         bgcolor: isScrolled ? "rgba(255, 255, 255, 0.95)" : "transparent",
         py: isScrolled ? 1 : 2,
         backdropFilter: isScrolled ? "blur(10px)" : "none",
+        ...(isScrolled && { boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)" }),
       }}
     >
       <Container maxWidth="lg">
@@ -75,7 +76,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
           ) : (
             <Box sx={{ display: "flex", alignItems: "center" }}>
               {navItems.map((item) => (
-                <Button color="inherit" key={item} sx={{ mx: 1 }}>
+                <Button color="inherit" key={item} sx={{ mx: 1,fontSize: 16, }}>
                   {item}
                 </Button>
               ))}
