@@ -46,13 +46,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
             component="div"
             sx={{ display: "flex", alignItems: "center" }}
           >
-            <Box
-              component="img"
-              src="/_image2vector.svg"
-              alt="Rilla.ai"
-              sx={{ height: 24, mr: 1 }}
-            />
-            Rilla voice
+            RILLA AI
           </Typography>
           {isMobile ? (
             <>
