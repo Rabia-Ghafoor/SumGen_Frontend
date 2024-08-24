@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# RILLA Sales
 
-## Getting Started
+### Feature Idea: Sales Transcript Management
 
-First, run the development server:
+**Description:**  
+Build a feature that allows sales managers to add, edit, and delete comments on specific parts of a sales transcript, with the ability to attach files to each comment. Additionally, implement a summary feature using LLMs to generate a concise overview of the entire transcript and its associated comments.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Why the Founders Will Be Happy:**  
+This feature directly supports Rilla's goal of providing actionable, data-driven feedback by enabling detailed annotation and summarization of sales interactions, improving coaching and decision-making.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Tech Stack:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- TypeScript
+- React
+- Node.js
+- AWS (S3 for file storage, DynamoDB for comment storage, Lambda for backend logic, SageMaker or GPT API for LLM integration)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**Starting Architecture:**
 
-## Learn More
+- **Frontend:**
 
-To learn more about Next.js, take a look at the following resources:
+  - [ ] Build the landing page ( Lhasang )
+  - [x] Build Transcript text view ( Salif )
+  - [x] Build comment section view ( Salif )
+  - [ ] Add comment functionality
+  - [ ] Add Modify comment functionality
+  - [ ] Add Delete comment functionality
+  - [x] Build Summary view ( Salif )
+  - [ ] Build the Dashboard Displaying all Transcripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Backend:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+  - [ ] Use Node.js with AWS Lambda for handling CRUD operations for comments and file attachments.
+  - [ ] Integrate with an LLM to generate summaries of the transcript and associated comments.
 
-## Deploy on Vercel
+- **Database:**
+  - [ ] Use DynamoDB for storing comments and metadata.
+  - [ ] Use S3 for storing attached files.
+  - [ ] Integrate with an LLM for summarizing the transcript.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Checkpoint 1
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [ ] Find team members
+- [ ] Gather 2 questions about project specs
+- [ ] Choose a track and architecture diagram
+
+### Checkpoint 2
+
+- [ ] Create dev tasks on Trello, Jira, or Linear
+- [ ] Build User Experience (e.g., frontend, landing page)
+- [ ] Determine how you can speak to real users
+
+### Checkpoint 3
+
+- [ ] Find team strengths and weaknesses
+- [ ] Build production code (e.g., comments, scalable)
+- [ ] Add backend, cloud, learn any new tech
+
+### Checkpoint 4
+
+- [ ] Ask questions on Discord, find blockers
+- [ ] Add backend code or AI stack features
+- [ ] Touch base with 100 users or get feedback
+
+### Checkpoint 5
+
+- [ ] Determine one last feature and drop the rest
+- [ ] Connect backend, frontend, cloud, AI
+- [ ] Update readme, make ppt, practice demo
+
+### Demo
+
+- [ ] Submit 3-min video, GitHub, ppt, landing page
+- [ ] Submit Career Capital form and team feedback
+- [ ] Attend demo of top 3-5 projects and pitch if finalist
