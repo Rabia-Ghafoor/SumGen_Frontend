@@ -32,8 +32,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const navItems = [
-    { label: "Customers", url: "https://www.rilla.com/customers" },
-    { label: "Rilla labs", url: "https://www.rilla.com/rilla-labs" },
+
     { label: "About Us", url: "/about" },
   ];
   return (
