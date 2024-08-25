@@ -2,11 +2,6 @@
 
 ### Feature Idea: Sales Transcript Management
 
-**Description:**  
-Build a feature that allows sales managers to add, edit, and delete comments on specific parts of a sales transcript, with the ability to attach files to each comment. Additionally, implement a summary feature using LLMs to generate a concise overview of the entire transcript and its associated comments.
-
-**Why the Founders Will Be Happy:**  
-This feature directly supports Rilla's goal of providing actionable, data-driven feedback by enabling detailed annotation and summarization of sales interactions, improving coaching and decision-making.
 
 **Tech Stack:**
 
