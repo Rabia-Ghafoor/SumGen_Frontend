@@ -15,9 +15,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-      <link rel="icon" href="../public/rilla-logo.webp" />
-      </head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <body>{children}</body>
