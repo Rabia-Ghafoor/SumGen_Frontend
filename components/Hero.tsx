@@ -2,19 +2,25 @@
 import React, { useState } from "react";
 import { Box, Typography, Button, Grid, Paper, Container } from "@mui/material";
 import FeatureCard from "./FeatureCard";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
 
   const handleCardClick = (title: string) => {
     setSelectedCard(title);
     console.log(`Card "${title}" was clicked.`);
   };
+  const handleStartForFreeClick = () => {
+    navigate("../app/doc/page.tsx"); 
+  };
+
 
   return (
     <Paper
       elevation={3}
-      sx={{ borderRadius: 11, overflow: "hidden", bgcolor: "#016aff" }}
+      sx={{ borderRadius: 11, overflow: "hidden", bgcolor: "#126fd6" }}
     >
       <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 4, md: 6, lg: 8 } }}>
         <Box
@@ -67,6 +73,7 @@ const Hero = () => {
                 boxShadow: "0 6px 8px rgba(0, 128, 255, 0.3)",
               },
             }}
+            onClick={handleStartForFreeClick}
           >
             Start for Free
           </Button>

@@ -42,7 +42,7 @@ const Middle: React.FC = () => {
 
 
         {/* Heading and Description */}
-        <Typography variant="h3" align="center" gutterBottom>
+        <Typography variant="h2" align="center" fontFamily="Avertastd,sans-serif" gutterBottom>
           Seamless Transcription and Summary of your meetings
         </Typography>
         <Typography variant="body1" align="center" paragraph>
@@ -68,7 +68,7 @@ const Middle: React.FC = () => {
           </Button>
         </Box>
 
-        <Box sx={{ bgcolor: "#016aff", borderRadius: 4, p: 4, color: "#fff" }}>
+        <Box sx={{ bgcolor: "#126fd6", borderRadius: 4, p: 4, color: "#fff" }}>
           <Grid container spacing={4} alignItems="center">
             <Grid item xs={12} md={6}>
               <Typography variant="h4" gutterBottom>

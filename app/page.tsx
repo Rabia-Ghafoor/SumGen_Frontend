@@ -1,5 +1,6 @@
 'use client';
 
+import { BrowserRouter as Router } from 'react-router-dom';
 import { useScrollTrigger } from '@mui/material';
 import { Box, Container } from '@mui/material';
 import Header from '../components/Header';
@@ -14,6 +15,7 @@ export default function Home() {
   });
 
   return (
+    <Router>
     <Box sx={{ 
       minHeight: '100vh', 
       bgcolor: '#03040b',
@@ -27,5 +29,6 @@ export default function Home() {
         <Footer/>
       </Box>
     </Box>
+    </Router>
   );
 }
