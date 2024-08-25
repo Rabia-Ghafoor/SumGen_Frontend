@@ -90,6 +90,7 @@ const Hero = () => {
                   <FeatureCard
                     title="Review Sales Transcripts"
                     description="Dive into detailed call transcripts with ease. Uncover insights and track performance to refine your sales strategies with Rilla ++."
+                    isNew
                     isSelected={selectedCard === "Review Sales Transcripts"}
                   />
                 </Box>
