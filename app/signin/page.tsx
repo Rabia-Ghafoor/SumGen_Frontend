@@ -23,7 +23,7 @@ export default function SignInPage() {
         // Signed in
         const user = userCredential.user;
         console.log("Sign in successfull");
-        router.push("/dash");
+        router.push("/docu");
       })
       .catch((error) => {
         const errorMessage = error.message;

@@ -73,6 +73,8 @@ interface Comment {
   time: string;
   children: Comment[];
 }
+
+
 const defaultTranscript = `Salesperson: Hi there! Welcome to our dealership. My name is Jordan. How can I assist you today?
 
 Customer: Hi, Jordan. I'm looking for a new car, something reliable but also stylish. I’ve heard good things about the new sedans you have.
@@ -164,7 +166,7 @@ export default function Editor() {
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
         <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
           <Link
-            href="#"
+            href="http://localhost:3000/"
             className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
           >
             <Home className="h-5 w-5 transition-all group-hover:scale-110" />

@@ -1,4 +1,5 @@
   'use client'
+  import Link from 'next/link';
 import React, { useState } from "react";
 import { Box, Typography, Button, Grid, Paper, Container } from "@mui/material";
 import FeatureCard from "./FeatureCard";
@@ -69,7 +70,9 @@ const Hero = () => {
               },
             }}
           >
+            <Link href="/signin">
             Start for Free
+            </Link>
           </Button>
           <Box
             sx={{

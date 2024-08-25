@@ -1,10 +1,6 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import dotenv from "dotenv";
-// Load environment variables
-dotenv.config();
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getAnalytics, isSupported } from "firebase/analytics";
 
 const firebaseConfig = {
@@ -17,11 +13,10 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
-// Initialize Firebase Analytics only if supported
+
 let analytics;
 if (typeof window !== "undefined") {
   isSupported().then((supported) => {
@@ -33,4 +28,5 @@ if (typeof window !== "undefined") {
     }
   });
 }
-export { app, db, auth, analytics };
+
+export { app, db, auth, analytics, onAuthStateChanged };

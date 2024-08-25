@@ -1,4 +1,4 @@
-  'use client'
+"use client";
 import React, { useState, useEffect } from "react";
 import rilla from "../public/rilla.png";
 import {
@@ -19,7 +19,8 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import Image from 'next/image'
+import Image from "next/image";
+import Link from 'next/link';
 
 interface HeaderProps {
   isScrolled: boolean;
@@ -50,9 +51,21 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
           <Typography
             variant="h6"
             component="div"
-            sx={{ display: "flex", alignItems: "center", color: "#fff500",fontFamily: "Druk",fontWeight: "600" }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              color: "#fff500",
+              fontFamily: "Druk",
+              fontWeight: "600",
+            }}
           >
-              <Image src={rilla.src} alt="RILLA AI" width="24" height="24" style={{ marginRight: 8 }} />
+            <Image
+              src={rilla.src}
+              alt="RILLA AI"
+              width="24"
+              height="24"
+              style={{ marginRight: 8 }}
+            />
             RILLA ++
           </Typography>
           {isMobile ? (
@@ -99,7 +112,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
                 </List>
                 <Box sx={{ textAlign: "left" }}>
                   <Button color="inherit" sx={{ mx: 1, my: 1 }}>
-                    Log In
+                    <Link href="/signup">Log In</Link>
                   </Button>
                 </Box>
                 <Button
