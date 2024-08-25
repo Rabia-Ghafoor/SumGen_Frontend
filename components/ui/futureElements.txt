@@ -1,0 +1,60 @@
+ // Reply Button for the comment
+  const [isReplyOpen, setIsReplyOpen] = useState(false);
+  const openReply = () => setIsReplyOpen(true);
+  const closeReply = () => setIsReplyOpen(false);
+  async function replyComment(commentId: number, comment: string) {
+    // PUT data in the database
+    // Fetch new Data from DB and refresh UI
+    console.log(`Replied to comment ${commentId} saying: ${comment}`);
+
+    setCommentInput("");
+  }
+ <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  className="font-bold"
+                  variant="ghost"
+                  size={"sm"}
+                  onClick={openReply}
+                >
+                  Reply
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Share your thoughts</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    <div className="grid gap-4 py-4">
+                      <Textarea
+                        className="h-[20vh] text-black"
+                        placeholder="Share your thoughts here"
+                        maxLength={270}
+                        value={commentInput}
+                        onChange={(e) => setCommentInput(e.target.value)}
+                      />
+                    </div>
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Nevermind</AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={() => {
+                      replyComment(comment.id, commentInput);
+                    }}
+                  >
+                    Submit
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+
+// SEARCH AFTER BREADCRUMBS:
+
+<div className="relative ml-auto flex-1 md:grow-0">
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Input
+              type="search"
+              placeholder="Search..."
+              className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
+            />
+          </div>

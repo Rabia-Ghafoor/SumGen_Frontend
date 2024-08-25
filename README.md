@@ -18,15 +18,18 @@ This feature directly supports Rilla's goal of providing actionable, data-driven
 **Starting Architecture:**
 
 - **Frontend:**
+  Tasks to complete:
 
   - [ ] Build the landing page ( Lhasang )
   - [x] Build Transcript text view ( Salif )
   - [x] Build comment section view ( Salif )
-  - [ ] Add comment functionality
-  - [ ] Add Modify comment functionality
-  - [ ] Add Delete comment functionality
+  - [x] Add Edit comment functionality ( Salif )
+  - [x] Add Delete comment functionality ( Salif )
   - [x] Build Summary view ( Salif )
+  - [ ] Add comment functionality ( Salif )
+  - [ ] Add transcript with bubbles
   - [ ] Build the Dashboard Displaying all Transcripts
+  - [ ] Build user authentication
 
 - **Backend:**
 

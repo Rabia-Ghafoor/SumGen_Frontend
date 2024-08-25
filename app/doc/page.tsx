@@ -40,6 +40,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Tooltip,
@@ -56,9 +57,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
-
 import { Label } from "@/components/ui/label";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import defaultImage from "../../public/placeholder-user.webp";
 interface Comment {
@@ -71,7 +71,6 @@ interface Comment {
   user: string;
   date: string;
   time: string;
-  children: Comment[];
 }
 const defaultTranscript = `Salesperson: Hi there! Welcome to our dealership. My name is Jordan. How can I assist you today?
 
@@ -110,7 +109,7 @@ const defaultSummary = `The customer visits the dealership looking for a new car
 The salesperson recommends the 2024 EcoDrive Sedan, highlighting its impressive fuel economy and comprehensive safety suite.
 The customer is interested and agrees to take the car for a test drive. After the test drive, the customer expresses satisfaction with the car’s performance and features.
 The conversation concludes with the salesperson offering to discuss pricing and financing options, which the customer is eager to explore.`;
-import Comments from "../../components/ui/comments";
+import CommentUI from "../../components/ui/comments";
 export default function Editor() {
   const { quill, quillRef } = useQuill();
   const [comments, setComments] = useState<Comment[]>([
@@ -121,7 +120,6 @@ export default function Editor() {
       user: "Sebastian Jimenez",
       date: "08/24/2024",
       time: "10:17 AM",
-      children: [],
     },
     {
       id: 1,
@@ -130,7 +128,6 @@ export default function Editor() {
       user: "Mara Dimofte",
       date: "08/24/2024",
       time: "10:15 AM",
-      children: [],
     },
     {
       id: 4,
@@ -139,7 +136,6 @@ export default function Editor() {
       user: "Christopher Martin",
       date: "08/24/2024",
       time: "10:30 AM",
-      children: [],
     },
     {
       id: 3,
@@ -148,16 +144,52 @@ export default function Editor() {
       user: "Yashvi Jaju",
       date: "08/24/2024",
       time: "10:20 AM",
-      children: [],
     },
   ]);
   const [commentInput, setCommentInput] = useState<string>("");
 
-  async function addComment() {
-    //API call to send the data to the backend Get response
-    // Fetch new Data from DB and refresh UI
-    setCommentInput("");
-  }
+  useEffect(() => {
+    if (quill) {
+      const handleSelectionChange = (range: any) => {
+        if (range && range.length > 0) {
+          const selectedText = quill?.getText(range.index, range.length);
+          if (selectedText) {
+            const confirmComment = confirm(
+              `Add a comment to: "${selectedText}"?`
+            );
+            if (confirmComment) {
+              const commentText = prompt("Enter your comment:");
+              if (commentText) {
+                const newComment: Comment = {
+                  id: Date.now(),
+                  text: commentText,
+                  selection: range,
+                  user: "User", // Update with dynamic user data if available
+                  date: new Date().toLocaleDateString(),
+                  time: new Date().toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  }),
+                };
+                setComments((prev) => [...prev, newComment]);
+              }
+            }
+          }
+        }
+      };
+
+      quill.on("selection-change", handleSelectionChange);
+      return () => {
+        quill.off("selection-change", handleSelectionChange);
+      };
+    }
+  }, [quill]);
+
+  const handleCommentClick = (comment: Comment) => {
+    if (quill) {
+      quill.setSelection(comment.selection.index, comment.selection.length);
+    }
+  };
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
@@ -231,10 +263,14 @@ export default function Editor() {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-
-          <div className="relative ml-auto flex-1 md:grow-0"></div>
-
-          {/* User profile */}
+          <div className="relative ml-auto flex-1 md:grow-0">
+            {/* <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Input
+              type="search"
+              placeholder="Search..."
+              className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
+            /> */}
+          </div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
@@ -290,25 +326,41 @@ export default function Editor() {
                     <Dialog>
                       <DialogTrigger asChild>
                         <Button variant="default">
-                          <MessageSquare color="white" />
+                          <MessageSquare color="yellow" />
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="sm:max-w-[425px]">
                         <DialogHeader>
-                          <DialogTitle>Comment</DialogTitle>
+                          <DialogTitle>Edit profile</DialogTitle>
+                          <DialogDescription>
+                            Make changes to your profile here. Click save when
+                            you`&apos;`re done.
+                          </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
-                          <Textarea
-                            className="h-[20vh]"
-                            placeholder="Share your thoughts here"
-                            value={commentInput}
-                            onChange={(e) => setCommentInput(e.target.value)}
-                          />
+                          <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="name" className="text-right">
+                              Name
+                            </Label>
+                            <Input
+                              id="name"
+                              defaultValue="Pedro Duarte"
+                              className="col-span-3"
+                            />
+                          </div>
+                          <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="username" className="text-right">
+                              Username
+                            </Label>
+                            <Input
+                              id="username"
+                              defaultValue="@peduarte"
+                              className="col-span-3"
+                            />
+                          </div>
                         </div>
                         <DialogFooter>
-                          <Button type="submit" onSubmit={addComment}>
-                            Submit
-                          </Button>
+                          <Button type="submit">Save changes</Button>
                         </DialogFooter>
                       </DialogContent>
                     </Dialog>
@@ -316,7 +368,35 @@ export default function Editor() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-black text-md whitespace-pre-line">
-                    <Comments commentsData={comments} />
+                    <ul className="mt-4">
+                      {comments.map((comment) => (
+                        <li
+                          key={comment.id}
+                          className="pl-2 mb-2 cursor-pointer bg-[#EDF2FA] rounded-lg"
+                          onClick={() => handleCommentClick(comment)}
+                        >
+                          <div className="comment-header inline-flex">
+                            <div className="author-profile flex items-center">
+                              <Avatar>
+                                <AvatarImage src="https://github.com/shadcn.png" />
+                                <AvatarFallback>CN</AvatarFallback>
+                              </Avatar>
+                            </div>
+                            <div className="author-details ml-4">
+                              <span className="font-semibold">
+                                {comment.user}:
+                              </span>
+                              <br />
+                              <span className=" text-gray-600 text-sm">
+                                {comment.date} {comment.time}
+                              </span>
+                            </div>
+                          </div>
+
+                          <p className="mt-1">{comment.text}</p>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </CardContent>
               </Card>
