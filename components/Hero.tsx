@@ -10,6 +10,7 @@ const Hero = () => {
     setSelectedCard(title);
     console.log(`Card "${title}" was clicked.`);
   };
+ 
 
   return (
     <Paper
