@@ -338,11 +338,11 @@ export default function Editor() {
                   <CardDescription className="flex justify-end">
                     <Dialog>
                       <DialogTrigger asChild>
-                        <Button variant="default">
+                        <Button variant="default" className="bg-black">
                           <MessageSquare color="white" />
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="sm:max-w-[425px]">
+                      <DialogContent className="sm:max-w-[425px] bg-white">
                         <DialogHeader>
                           <DialogTitle>Comment</DialogTitle>
                         </DialogHeader>

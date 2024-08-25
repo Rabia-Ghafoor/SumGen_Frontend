@@ -112,7 +112,7 @@ export default function Comments({ commentsData }: CommentsProps) {
                   Edit
                 </Button>
               </AlertDialogTrigger>
-              <AlertDialogContent>
+              <AlertDialogContent className="bg-white">
                 <AlertDialogHeader>
                   <AlertDialogTitle>Changed your mind?</AlertDialogTitle>
                   <AlertDialogDescription>
@@ -143,7 +143,7 @@ export default function Comments({ commentsData }: CommentsProps) {
                   Delete
                 </Button>
               </AlertDialogTrigger>
-              <AlertDialogContent>
+              <AlertDialogContent className="bg-white">
                 <AlertDialogHeader>
                   <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                   <AlertDialogDescription>
