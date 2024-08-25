@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from "react";
 import { Box, Typography, Button, Grid, Paper, Container } from "@mui/material";
 import FeatureCard from "./FeatureCard";
@@ -47,7 +48,7 @@ const Hero = () => {
               fontSize: { xs: "1rem", sm: "1.1rem", md: "1.3rem" },
             }}
           >
-            Boost your sales team's productivity with Rilla++. Effortlessly
+            Boost your sales team&apos;s productivity with Rilla++. Effortlessly
             analyze call transcripts, collaborate through comments, and leverage
             AI for insightful summaries. Drive smarter decisions, faster.
           </Typography>
@@ -127,7 +128,7 @@ const Hero = () => {
               borderRadius: 10,
               p: 4,
               mt: 4,
-              height: "calc(3 * 100%)", // Triple the height of the feature cards container
+              height: "calc(3 * 100%)", 
               maxWidth: "1200px",
               mx: "auto",
               display: "flex",

@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import Image from 'next/image'
 
 interface HeaderProps {
   isScrolled: boolean;
@@ -50,7 +51,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
             component="div"
             sx={{ display: "flex", alignItems: "center", color: "#fff500",fontFamily: "Druk",fontWeight: "600" }}
           >
-              <img src={rilla.src} alt="RILLA AI" width="24" height="24" style={{ marginRight: 8 }} />
+              <Image src={rilla.src} alt="RILLA AI" width="24" height="24" style={{ marginRight: 8 }} />
             RILLA AI
           </Typography>
           {isMobile ? (
