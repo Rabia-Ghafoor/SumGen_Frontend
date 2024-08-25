@@ -4,7 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from '../theme/theme';
 
 export const metadata = {
-  title: 'Rilla Voice',
+  title: 'SumGen',
   description: 'Description of your app',
 };
 

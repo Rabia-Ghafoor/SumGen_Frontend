@@ -37,7 +37,7 @@ const Hero = () => {
               mb: 3,
             }}
           >
-            Introducing Rilla++
+            Introducing SumGen
             <span style={{ color: "#ffd700" }}>✨</span>
           </Typography>
           <Typography
@@ -50,9 +50,7 @@ const Hero = () => {
               fontSize: { xs: "1rem", sm: "1.1rem", md: "1.3rem" },
             }}
           >
-            Boost your sales team&apos;s productivity with Rilla++. Effortlessly
-            analyze call transcripts, collaborate through comments, and leverage
-            AI for insightful summaries. Drive smarter decisions, faster.
+            Boost your sales team&apos;s productivity with SumGen.
           </Typography>
           <Button
             variant="contained"
@@ -93,7 +91,7 @@ const Hero = () => {
                 >
                   <FeatureCard
                     title="Review Sales Transcripts"
-                    description="Dive into detailed call transcripts with ease. Uncover insights and track performance to refine your sales strategies with Rilla ++."
+                    description="Introducing SumGen, a AI powered Summary Generator for sales transcript."
                     isNew
                     isSelected={selectedCard === "Review Sales Transcripts"}
                   />
@@ -152,9 +150,8 @@ const Hero = () => {
                   fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
                 }}
               >
-                Dive into detailed call transcripts with ease. Uncover insights
-                and track performance to refine your sales strategies with rilla
-                ++.
+                 SumGen, a AI powered Summary Generator for sales transcript
+                
               </Typography>
             )}
             {selectedCard === "Discuss with Comments" && (

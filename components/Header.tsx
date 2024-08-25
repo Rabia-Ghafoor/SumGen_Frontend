@@ -32,7 +32,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const navItems = [
-
+   
     { label: "About Us", url: "/about" },
   ];
   return (
@@ -63,12 +63,12 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
           >
             <Image
               src={rilla.src}
-              alt="RILLA AI"
+              alt="SumGen"
               width="24"
               height="24"
               style={{ marginRight: 8 }}
             />
-            RILLA ++
+            SumGen 
           </Typography>
           {isMobile ? (
             <>
