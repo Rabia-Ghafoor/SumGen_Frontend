@@ -52,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
             sx={{ display: "flex", alignItems: "center", color: "#fff500",fontFamily: "Druk",fontWeight: "600" }}
           >
               <Image src={rilla.src} alt="RILLA AI" width="24" height="24" style={{ marginRight: 8 }} />
-            RILLA AI
+            RILLA ++
           </Typography>
           {isMobile ? (
             <>
