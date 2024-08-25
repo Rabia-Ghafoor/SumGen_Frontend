@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div className="col-span-1 md:col-span-2">
             <h2 className="text-2xl font-bold mb-4">Rilla ++</h2>
-            <p className="mb-2">4517 Washington Ave. Manchester, Kentucky 39495</p>
+            <p className="mb-2">4517 Washington Ave</p>
             <p className="mb-4">info@rellaai.mail</p>
             <div className="flex space-x-4">
               <Link href="#" className="text-white hover:text-blue-500">Twitter</Link>
@@ -37,7 +37,6 @@ const Footer: React.FC = () => {
             <ul className="space-y-2">
               <li><Link href="#" className="text-gray-400 hover:text-white">Blog</Link></li>
               <li><Link href="#" className="text-gray-400 hover:text-white">Guides</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Shine Community</Link></li>
               <li><Link href="#" className="text-gray-400 hover:text-white">Question Hub</Link></li>
             </ul>
           </div>

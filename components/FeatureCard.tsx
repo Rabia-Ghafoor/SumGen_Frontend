@@ -25,7 +25,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
         borderRadius: 5,
         backgroundColor: "#fff",
         cursor: "pointer",
-        border: isSelected ? "1px solid #03040b" : "none", 
+        border: isSelected ? "1px solid #03040b" : "1px solid #fff", 
       }}
     >
       <Box
