@@ -20,7 +20,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
-import Link from 'next/link';
+import Link from "next/link";
 
 interface HeaderProps {
   isScrolled: boolean;
@@ -31,8 +31,11 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const navItems = ["Solutions", "Pricing", "Apps & Integrations", "Resources"];
-
+  const navItems = [
+    { label: "Customers", url: "https://www.rilla.com/customers" },
+    { label: "Rilla labs", url: "https://www.rilla.com/rilla-labs" },
+    { label: "About Us", url: "/about" },
+  ];
   return (
     <AppBar
       position="fixed"
@@ -105,8 +108,10 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
                 </IconButton>
                 <List>
                   {navItems.map((item) => (
-                    <ListItem button key={item}>
-                      <ListItemText primary={item} />
+                    <ListItem button key={item.label}>
+                      <Link href={item.url}>
+                        <ListItemText primary={item.label} />
+                      </Link>
                     </ListItem>
                   ))}
                 </List>
@@ -115,6 +120,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
                     <Link href="/signup">Log In</Link>
                   </Button>
                 </Box>
+                <Link href="/signin">
                 <Button
                   variant="contained"
                   color="primary"
@@ -122,17 +128,18 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
                 >
                   Start for Free
                 </Button>
+                </Link>
               </Drawer>
             </>
           ) : (
             <Box sx={{ display: "flex", alignItems: "center", color: "#fff" }}>
               {navItems.map((item) => (
-                <Button color="inherit" key={item} sx={{ mx: 1, fontSize: 16 }}>
-                  {item}
+                <Button color="inherit" key={item.label} sx={{ mx: 1, fontSize: 16 }}>
+                  <Link href={item.url}>{item.label}</Link>
                 </Button>
               ))}
               <Button color="inherit" sx={{ mx: 1 }}>
-                Log In
+                <Link href="/doc">Log In</Link>
               </Button>
               <Button
                 variant="contained"

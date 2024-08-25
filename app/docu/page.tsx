@@ -1,11 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-//QUILL.JS
-import { useQuill } from "react-quilljs";
-import "quill/dist/quill.snow.css";
-//SHADCN
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   MessageSquare,
   Home,
@@ -13,13 +10,13 @@ import {
   Search,
   Settings,
   Users2,
+  LogOut,
 } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
@@ -59,6 +56,11 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import defaultImage from "../../public/placeholder-user.webp";
+import { auth, onAuthStateChanged } from "../../firebaseConfig";
+import { User } from "firebase/auth";
+import BubbleWindow from "@/components/ui/bubblewindow";
+import CommentsUI from "@/components/ui/commentsui";
+
 interface Comment {
   id: number;
   text: string;
@@ -71,13 +73,15 @@ interface Comment {
   time: string;
   children: Comment[];
 }
+
 interface Bubble {
   speaker: string;
   message: string;
 }
+
 const defaultTranscript = `Salesperson: Hi there! Welcome to our dealership. My name is Jordan. How can I assist you today?
 
-Customer: Hi, Jordan. I'm looking for a new car, something reliable but also stylish. I’ve heard good things about the new sedans you have.
+Customer: Hi, Jordan. I'm looking for a new car, something reliable but also stylish. I've heard good things about the new sedans you have.
 
 Salesperson: Great choice! Our latest sedan models are not only reliable but also come with some fantastic features. Are you looking for something specific, like fuel efficiency, technology features, or maybe performance?
 
@@ -87,11 +91,11 @@ Salesperson: Perfect! We have the new 2024 EcoDrive Sedan, which gets up to 35 m
 
 Customer: That sounds good. Can we do that?
 
-Salesperson: Absolutely! Let me grab the keys, and we’ll get started. While I do that, would you like some water or coffee?
+Salesperson: Absolutely! Let me grab the keys, and we'll get started. While I do that, would you like some water or coffee?
 
 Customer: Water would be great, thanks.
 
-Salesperson: (Returns with keys) Here you go! The car is right outside. I’ll guide you through the features while we drive.
+Salesperson: (Returns with keys) Here you go! The car is right outside. I'll guide you through the features while we drive.
 
 Customer: Sounds good!
 
@@ -99,27 +103,27 @@ Customer: Sounds good!
 
 Salesperson: How did it feel?
 
-Customer: I really liked it. It’s smooth, and the features are impressive.
+Customer: I really liked it. It's smooth, and the features are impressive.
 
-Salesperson: I’m glad to hear that! If you’re interested, we can go over the pricing and see what options work best for you.
+Salesperson: I'm glad to hear that! If you're interested, we can go over the pricing and see what options work best for you.
 
-Customer: Sure, let’s do that.
+Customer: Sure, let's do that.
 
-Salesperson: Great! Let’s head inside, and we can discuss financing options as well. We have some excellent deals going on right now.
+Salesperson: Great! Let's head inside, and we can discuss financing options as well. We have some excellent deals going on right now.
 
-Customer: Awesome, let’s get started.`;
+Customer: Awesome, let's get started.`;
+
 const defaultSummary = `The customer visits the dealership looking for a new car that is both reliable and stylish, with a particular interest in fuel efficiency and advanced safety features.
 The salesperson recommends the 2024 EcoDrive Sedan, highlighting its impressive fuel economy and comprehensive safety suite.
-The customer is interested and agrees to take the car for a test drive. After the test drive, the customer expresses satisfaction with the car’s performance and features.
+The customer is interested and agrees to take the car for a test drive. After the test drive, the customer expresses satisfaction with the car's performance and features.
 The conversation concludes with the salesperson offering to discuss pricing and financing options, which the customer is eager to explore.`;
-import BubbleWindow from "@/components/ui/bubblewindow";
-import CommentsUI from "@/components/ui/commentsui";
+
 export default function Editor() {
   const [comments, setComments] = useState<Comment[]>([
     {
       id: 2,
       text: "Customer seems interested in the sedans. Focus on fuel efficiency.",
-      selection: { index: 110, length: 90 }, // Points to "Customer: Hi, Jordan. I'm looking for a new car, something reliable but also stylish."
+      selection: { index: 110, length: 90 },
       user: "Sebastian Jimenez",
       date: "08/24/2024",
       time: "10:17 AM",
@@ -128,7 +132,7 @@ export default function Editor() {
     {
       id: 1,
       text: "Jordan is very welcoming and attentive. Great start!",
-      selection: { index: 0, length: 50 }, // Points to "Salesperson: Hi there! Welcome to our dealership. My name is Jordan."
+      selection: { index: 0, length: 50 },
       user: "Mara Dimofte",
       date: "08/24/2024",
       time: "10:15 AM",
@@ -137,7 +141,7 @@ export default function Editor() {
     {
       id: 4,
       text: "Customer is ready to discuss pricing. Close the deal!",
-      selection: { index: 610, length: 70 }, // Points to "Customer: Sure, let’s do that."
+      selection: { index: 610, length: 70 },
       user: "Christopher Martin",
       date: "08/24/2024",
       time: "10:30 AM",
@@ -146,7 +150,7 @@ export default function Editor() {
     {
       id: 3,
       text: "Great pitch on the EcoDrive Sedan. Highlight safety features more.",
-      selection: { index: 320, length: 110 }, // Points to "Salesperson: Perfect! We have the new 2024 EcoDrive Sedan..."
+      selection: { index: 320, length: 110 },
       user: "Yashvi Jaju",
       date: "08/24/2024",
       time: "10:20 AM",
@@ -154,7 +158,20 @@ export default function Editor() {
     },
   ]);
   const [commentInput, setCommentInput] = useState<string>("");
-  // Function to parse transcript into bubbles
+  const [user, setUser] = useState<User | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      if (!currentUser) {
+        router.push("/signin");
+      }
+    });
+
+    return () => unsubscribe();
+  }, [router]);
+
   function parseTranscriptToBubbles(transcript: string): Bubble[] {
     const lines = transcript.split("\n").filter((line) => line.trim() !== "");
     const bubbles: Bubble[] = lines.map((line) => {
@@ -166,10 +183,24 @@ export default function Editor() {
   }
 
   const chatBubbles = parseTranscriptToBubbles(defaultTranscript);
+
   async function addComment() {
     //API call to send the data to the backend Get response
     // Fetch new Data from DB and refresh UI
     setCommentInput("");
+  }
+
+  const handleSignOut = async () => {
+    try {
+      await auth.signOut();
+      router.push("/signin");
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
+  };
+
+  if (!user) {
+    return <div>Loading...</div>;
   }
 
   return (
@@ -256,7 +287,7 @@ export default function Editor() {
                 className="overflow-hidden rounded-full"
               >
                 <Image
-                  src={defaultImage}
+                  src={user.photoURL || defaultImage}
                   width={36}
                   height={36}
                   alt="Avatar"
@@ -265,12 +296,17 @@ export default function Editor() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuLabel>
+                {user.displayName || user.email}
+              </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuItem>Support</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleSignOut}>
+                <LogOut className="mr-2 h-4 w-4" />
+                <span>Log out</span>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </header>
@@ -296,7 +332,7 @@ export default function Editor() {
                   </div>
                 </CardContent>
               </Card>
-              <Card x-chunk="comments" className="w-[30%] ml-4">
+              <Card x-chunk="comments" className="w-[30%] ml-4 custom-card">
                 <CardHeader>
                   <CardTitle>Comments</CardTitle>
                   <CardDescription className="flex justify-end">

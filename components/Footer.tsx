@@ -19,28 +19,28 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Products</h3>
             <ul className="space-y-2">
-              <li><Link href="#" className="text-gray-400 hover:text-white">Integrations</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Compliance</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Security</Link></li>
+              <li><Link href="https://www.rilla.com/demo" className="text-gray-400 hover:text-white">Book a demo</Link></li>
+              <li><Link href="" className="text-gray-400 hover:text-white">Login</Link></li>
+              <li><Link href="#" className="text-gray-400 hover:text-white">Download Rilla</Link></li>
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-semibold mb-4">Solutions</h3>
+            <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
-              <li><Link href="#" className="text-gray-400 hover:text-white">Faster Hiring</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Diversity & Inclusions</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Quality Hires</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Recruiter Training</Link></li>
+              <li><Link href="#" className="text-gray-400 hover:text-white">Home</Link></li>
+              <li><Link href="https://jobs.ashbyhq.com/rilla" className="text-gray-400 hover:text-white">Careers</Link></li>
+              <li><Link href="https://www.rilla.com/customers" className="text-gray-400 hover:text-white">Customers</Link></li>
             </ul>
           </div>
           <div>
             <h3 className="text-lg font-semibold mb-4">Resources</h3>
             <ul className="space-y-2">
-              <li><Link href="#" className="text-gray-400 hover:text-white">Blog</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Guides</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Question Hub</Link></li>
+              <li><Link href="https://www.rilla.com/demo" className="text-gray-400 hover:text-white">FAQ</Link></li>
+              <li><Link href="https://www.rilla.com/rilla-labs" className="text-gray-400 hover:text-white">Rilla labs</Link></li>
+              <li><Link href="https://www.rilla.com/reports" className="text-gray-400 hover:text-white">Reports</Link></li>
             </ul>
           </div>
+        
         </div>
         <div className="mt-12">
           <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
