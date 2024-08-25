@@ -1,3 +1,4 @@
+  'use client'
 import React from 'react';
 import Link from 'next/link';
 
@@ -49,6 +50,8 @@ const Footer: React.FC = () => {
               type="email"
               placeholder="Email address"
               className="bg-gray-800 text-white px-4 py-2 rounded-l-md w-full"
+              id='email'
+              autoComplete='True'
             />
             <button className="bg-blue-700 text-white px-6 py-2 rounded-r-md hover:bg-blue-600">
               Subscribe

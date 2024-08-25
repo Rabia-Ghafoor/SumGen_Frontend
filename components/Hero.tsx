@@ -1,4 +1,4 @@
-
+  'use client'
 import React, { useState } from "react";
 import { Box, Typography, Button, Grid, Paper, Container } from "@mui/material";
 import FeatureCard from "./FeatureCard";

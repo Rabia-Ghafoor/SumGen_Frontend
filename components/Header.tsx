@@ -1,3 +1,4 @@
+  'use client'
 import React, { useState, useEffect } from "react";
 import rilla from "../public/rilla.png";
 import {
