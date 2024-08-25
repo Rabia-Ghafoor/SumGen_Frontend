@@ -22,37 +22,25 @@ const Middle: React.FC = () => {
             }}
           >
             <Box sx={{ mt: 8, mr: 2 }}>
-              <IconCircle
-                Icon={GroupsIcon}
-                size={60}
-              />
+              <IconCircle Icon={GroupsIcon} size={60} />
             </Box>
             <Box sx={{ mt: 2, mr: 3 }}>
-              <IconCircle
-                Icon={GoogleIcon}
-                size={60}
-              />
+              <IconCircle Icon={GoogleIcon} size={60} />
             </Box>
             <Box sx={{ mt: -3 }}>
-              <IconCircle
-                Icon={EventIcon}
-                size={80}
-              />
+              <IconCircle Icon={EventIcon} size={80} />
             </Box>
             <Box sx={{ mt: 2, ml: 3 }}>
-              <IconCircle
-                Icon={NoteIcon}
-                size={60}
-              />
+              <IconCircle Icon={NoteIcon} size={60} />
             </Box>
             <Box sx={{ mt: 8, ml: 2 }}>
-              <IconCircle
-                Icon={VideoCallIcon}
-                size={60}
-              />
+              <IconCircle Icon={VideoCallIcon} size={60} />
             </Box>
           </Box>
         </Box>
+
+
+
         {/* Heading and Description */}
         <Typography variant="h3" align="center" gutterBottom>
           Seamless Transcription and Summary of your meetings

@@ -48,7 +48,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
           <Typography
             variant="h6"
             component="div"
-            sx={{ display: "flex", alignItems: "center", color: "#fff",fontFamily: "Druk",fontWeight: "600" }}
+            sx={{ display: "flex", alignItems: "center", color: "#fff500",fontFamily: "Druk",fontWeight: "600" }}
           >
               <img src={rilla.src} alt="RILLA AI" width="24" height="24" style={{ marginRight: 8 }} />
             RILLA AI

@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
           <div className="col-span-1 md:col-span-2">
             <h2 className="text-2xl font-bold mb-4">Rilla ++</h2>
             <p className="mb-2">4517 Washington Ave. Manchester, Kentucky 39495</p>
-            <p className="mb-4">info@prepifyer.mail</p>
+            <p className="mb-4">info@rellaai.mail</p>
             <div className="flex space-x-4">
               <Link href="#" className="text-white hover:text-blue-500">Twitter</Link>
               <Link href="#" className="text-white hover:text-blue-500">Instagram</Link>
@@ -44,14 +44,14 @@ const Footer: React.FC = () => {
         </div>
         <div className="mt-12">
           <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
-          <p className="mb-4">Subscribe to our newsletter to get the latest Prepifyer news</p>
+          <p className="mb-4">Subscribe to our newsletter to get the latest Rilla AI news</p>
           <div className="flex">
             <input
               type="email"
               placeholder="Email address"
               className="bg-gray-800 text-white px-4 py-2 rounded-l-md w-full"
             />
-            <button className="bg-blue-500 text-white px-6 py-2 rounded-r-md hover:bg-blue-600">
+            <button className="bg-blue-700 text-white px-6 py-2 rounded-r-md hover:bg-blue-600">
               Subscribe
             </button>
           </div>
