@@ -13,7 +13,7 @@ const Hero = () => {
   return (
     <Paper
       elevation={3}
-      sx={{ borderRadius: 11, overflow: "hidden", bgcolor: "white" }}
+      sx={{ borderRadius: 11, overflow: "hidden", bgcolor: "#016aff" }}
     >
       <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 4, md: 6, lg: 8 } }}>
         <Box
@@ -29,7 +29,7 @@ const Hero = () => {
             gutterBottom
             sx={{
               fontWeight: "bold",
-              color: "#1a2b49",
+              color: "#fff",
               fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
               mb: 3,
             }}
@@ -41,7 +41,7 @@ const Hero = () => {
             variant="h5"
             sx={{
               mb: 4,
-              color: "#4a4a4a",
+              color: "#c3dcfa",
               maxWidth: "800px",
               mx: "auto",
               fontSize: { xs: "1rem", sm: "1.1rem", md: "1.3rem" },

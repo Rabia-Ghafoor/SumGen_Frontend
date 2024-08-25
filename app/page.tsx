@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <Box sx={{ 
       minHeight: '100vh', 
-      bgcolor: '#f0f2f5',
+      bgcolor: '#03040b',
       pt: { xs: 8, md: 12 },
     }}>
       <Header isScrolled={trigger} />

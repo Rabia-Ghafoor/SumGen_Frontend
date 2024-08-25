@@ -13,8 +13,10 @@ import {
   Container,
   useMediaQuery,
   useTheme,
+  colors,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface HeaderProps {
   isScrolled: boolean;
@@ -34,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
       elevation={isScrolled ? 4 : 0}
       sx={{
         transition: "all 0.3s ease-in-out",
-        bgcolor: isScrolled ? "rgba(255, 255, 255, 0.95)" : "transparent",
+        bgcolor: isScrolled ? "#1a1b23" : "transparent",
         py: isScrolled ? 1 : 2,
         backdropFilter: isScrolled ? "blur(10px)" : "none",
         ...(isScrolled && { boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)" }),
@@ -45,7 +47,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
           <Typography
             variant="h6"
             component="div"
-            sx={{ display: "flex", alignItems: "center" }}
+            sx={{ display: "flex", alignItems: "center", color: "#fff",fontFamily: "Druk",fontWeight: "600" }}
           >
             RILLA AI
           </Typography>
@@ -56,14 +58,34 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
                 color="inherit"
                 aria-label="menu"
                 onClick={() => setIsDrawerOpen(true)}
+                sx={{ color: "#fff" }}
               >
-                <MenuIcon />
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <Typography variant="body1" sx={{ mr: 1 }}>
+                    Menu
+                  </Typography>
+                  <MenuIcon />
+                </Box>
               </IconButton>
               <Drawer
                 anchor="right"
                 open={isDrawerOpen}
                 onClose={() => setIsDrawerOpen(false)}
               >
+                <IconButton
+                  edge="start"
+                  color="inherit"
+                  aria-label="close"
+                  onClick={() => setIsDrawerOpen(false)}
+                  sx={{ ml: 2, mt: 2 }}
+                >
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <Typography variant="body1" sx={{ mr: 1 }}>
+                      Close
+                    </Typography>
+                    <CloseIcon />
+                  </Box>
+                </IconButton>
                 <List>
                   {navItems.map((item) => (
                     <ListItem button key={item}>
@@ -71,12 +93,24 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
                     </ListItem>
                   ))}
                 </List>
+                <Box sx={{ textAlign: "left" }}>
+                  <Button color="inherit" sx={{ mx: 1, my: 1 }}>
+                    Log In
+                  </Button>
+                </Box>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{ borderRadius: 50, ml: 2 }}
+                >
+                  Start for Free
+                </Button>
               </Drawer>
             </>
           ) : (
-            <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box sx={{ display: "flex", alignItems: "center", color: "#fff" }}>
               {navItems.map((item) => (
-                <Button color="inherit" key={item} sx={{ mx: 1,fontSize: 16, }}>
+                <Button color="inherit" key={item} sx={{ mx: 1, fontSize: 16 }}>
                   {item}
                 </Button>
               ))}
