@@ -139,14 +139,16 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
                 </Button>
               ))}
               <Button color="inherit" sx={{ mx: 1 }}>
-                <Link href="/doc">Log In</Link>
+                <Link href="/signup">Log In</Link>
               </Button>
               <Button
                 variant="contained"
                 color="primary"
                 sx={{ borderRadius: 50, ml: 2 }}
               >
+                <Link href="signin">
                 Start for Free
+                </Link>
               </Button>
             </Box>
           )}
