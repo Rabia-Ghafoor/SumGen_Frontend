@@ -1,7 +1,8 @@
-# RILLA Sales
+# SumGen
 
 ### Feature Idea: Sales Transcript Management
 
+Introducing SumGen, a AI powered Summary Generator for sales transcript
 
 **Tech Stack:**
 
