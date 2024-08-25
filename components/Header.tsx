@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import rilla from "../public/rilla.png";
 import {
   AppBar,
   Toolbar,
@@ -49,6 +50,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
             component="div"
             sx={{ display: "flex", alignItems: "center", color: "#fff",fontFamily: "Druk",fontWeight: "600" }}
           >
+              <img src={rilla} alt="RILLA AI" width="24" height="24" style={{ marginRight: 8 }} />
             RILLA AI
           </Typography>
           {isMobile ? (

@@ -34,7 +34,7 @@ const Hero = () => {
               mb: 3,
             }}
           >
-            Introducing Meeting RillaAI{" "}
+            Introducing Rilla++
             <span style={{ color: "#ffd700" }}>✨</span>
           </Typography>
           <Typography
@@ -47,9 +47,9 @@ const Hero = () => {
               fontSize: { xs: "1rem", sm: "1.1rem", md: "1.3rem" },
             }}
           >
-            Never take meeting notes again. Get transcripts, automated
-            summaries, action items, and chat with Rilla AI to get answers from
-            your meetings.
+            Boost your sales team's productivity with Rilla++. Effortlessly
+            analyze call transcripts, collaborate through comments, and leverage
+            AI for insightful summaries. Drive smarter decisions, faster.
           </Typography>
           <Button
             variant="contained"
@@ -84,37 +84,38 @@ const Hero = () => {
               <Grid item xs={12} md={4}>
                 <Box
                   sx={{ cursor: "pointer" }}
-                  onClick={() => handleCardClick("AI Meeting Assistant")}
+                  onClick={() => handleCardClick("Review Sales Transcripts")}
                 >
                   <FeatureCard
-                    title="AI Meeting Assistant"
-                    description="Get automated meeting notes and summaries with action items using Rilla AI. Say goodbye to tedious note-taking."                    isSelected={selectedCard === "AI Meeting Assistant"}
+                    title="Review Sales Transcripts"
+                    description="Dive into detailed call transcripts with ease. Uncover insights and track performance to refine your sales strategies with Rilla ++."
+                    isSelected={selectedCard === "Review Sales Transcripts"}
                   />
                 </Box>
               </Grid>
               <Grid item xs={12} md={4}>
                 <Box
                   sx={{ cursor: "pointer" }}
-                  onClick={() => handleCardClick("Rilla AI Chat")}
+                  onClick={() => handleCardClick("Discuss with Comments")}
                 >
                   <FeatureCard
-                    title="Rilla AI Chat"
-                    description="Get answers and generate content like emails and status updates, using the power of Rilla AI Chat across all your meetings."
+                    title="Discuss with Comments"
+                    description="Engage your team in meaningful discussions. Add comments directly to transcripts, fostering collaboration and quick feedback."
                     isNew
-                    isSelected={selectedCard === "Rilla AI Chat"}
+                    isSelected={selectedCard === "Discuss with Comments"}
                   />
                 </Box>
               </Grid>
               <Grid item xs={12} md={4}>
                 <Box
                   sx={{ cursor: "pointer" }}
-                  onClick={() => handleCardClick("AI Channels")}
+                  onClick={() => handleCardClick("AI Transcript Summary")}
                 >
                   <FeatureCard
-                    title="AI Channels"
-                    description="Combine live conversations with async updates. Chat with Rilla AI and teammates to get answers and drive projects forward."
+                    title="AI Transcript Summary"
+                    description="Save time with AI-powered summaries. Get concise, actionable insights from lengthy conversations in just seconds."
                     isNew
-                    isSelected={selectedCard === "AI Channels"}
+                    isSelected={selectedCard === "AI Transcript Summary"}
                   />
                 </Box>
               </Grid>
@@ -134,7 +135,7 @@ const Hero = () => {
               justifyContent: "center",
             }}
           >
-            {selectedCard === "AI Meeting Assistant" && (
+            {selectedCard === "Review Sales Transcripts" && (
               <Typography
                 variant="body1"
                 sx={{
@@ -145,11 +146,11 @@ const Hero = () => {
                   fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
                 }}
               >
-                Get automated meeting notes and summaries with action items
-                using Rilla AI.
+                Dive into detailed call transcripts with ease. Uncover insights
+                and track performance to refine your sales strategies with rilla ++.
               </Typography>
             )}
-            {selectedCard === "Rilla AI Chat" && (
+            {selectedCard === "Discuss with Comments" && (
               <Typography
                 variant="body1"
                 sx={{
@@ -160,11 +161,12 @@ const Hero = () => {
                   fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
                 }}
               >
-                Get answers and generate content like emails and status updates,
-                using the power of Rilla AI Chat across all your meetings.
+                Engage your team in meaningful discussions. Add comments
+                directly to transcripts, fostering collaboration and quick
+                feedback.
               </Typography>
             )}
-            {selectedCard === "AI Channels" && (
+            {selectedCard === "AI Transcript Summary" && (
               <Typography
                 variant="body1"
                 sx={{
@@ -175,8 +177,8 @@ const Hero = () => {
                   fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
                 }}
               >
-                  Combine live conversations with async updates. Chat with Rilla AI
-                and teammates to get answers and drive projects forward.
+                Save time with AI-powered summaries. Get concise, actionable
+                insights from lengthy conversations in just seconds.
               </Typography>
             )}
           </Box>
