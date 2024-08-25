@@ -57,9 +57,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-
 import { Label } from "@/components/ui/label";
-
 import defaultImage from "../../public/placeholder-user.webp";
 interface Comment {
   id: number;
@@ -72,6 +70,10 @@ interface Comment {
   date: string;
   time: string;
   children: Comment[];
+}
+interface Bubble {
+  speaker: string;
+  message: string;
 }
 const defaultTranscript = `Salesperson: Hi there! Welcome to our dealership. My name is Jordan. How can I assist you today?
 
@@ -110,9 +112,9 @@ const defaultSummary = `The customer visits the dealership looking for a new car
 The salesperson recommends the 2024 EcoDrive Sedan, highlighting its impressive fuel economy and comprehensive safety suite.
 The customer is interested and agrees to take the car for a test drive. After the test drive, the customer expresses satisfaction with the car’s performance and features.
 The conversation concludes with the salesperson offering to discuss pricing and financing options, which the customer is eager to explore.`;
-import Comments from "../../components/ui/comments";
+import BubbleWindow from "@/components/ui/bubblewindow";
+import CommentsUI from "@/components/ui/commentsui";
 export default function Editor() {
-  const { quill, quillRef } = useQuill();
   const [comments, setComments] = useState<Comment[]>([
     {
       id: 2,
@@ -152,7 +154,18 @@ export default function Editor() {
     },
   ]);
   const [commentInput, setCommentInput] = useState<string>("");
+  // Function to parse transcript into bubbles
+  function parseTranscriptToBubbles(transcript: string): Bubble[] {
+    const lines = transcript.split("\n").filter((line) => line.trim() !== "");
+    const bubbles: Bubble[] = lines.map((line) => {
+      const [speaker, ...messageParts] = line.split(":");
+      const message = messageParts.join(":").trim();
+      return { speaker: speaker.trim(), message: message };
+    });
+    return bubbles;
+  }
 
+  const chatBubbles = parseTranscriptToBubbles(defaultTranscript);
   async function addComment() {
     //API call to send the data to the backend Get response
     // Fetch new Data from DB and refresh UI
@@ -271,15 +284,15 @@ export default function Editor() {
                 <TabsTrigger value="tab-summary">AI Summary</TabsTrigger>
               </TabsList>
             </div>
-            <TabsContent value="tab-transcript" className="inline-flex">
+            <TabsContent value="tab-transcript" className="inline-flex w-full">
               <Card x-chunk="transcript" className="w-[70%]">
                 <CardHeader>
                   <CardTitle>Transcript title</CardTitle>
                   <CardDescription>Created 08/24/2024</CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="text-black text-md whitespace-pre-line">
-                    {defaultTranscript}
+                <CardContent className="">
+                  <div className="w-[100%]">
+                    <BubbleWindow bubbles={chatBubbles} />
                   </div>
                 </CardContent>
               </Card>
@@ -316,7 +329,7 @@ export default function Editor() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-black text-md whitespace-pre-line">
-                    <Comments commentsData={comments} />
+                    <CommentsUI commentsData={comments} />
                   </div>
                 </CardContent>
               </Card>
