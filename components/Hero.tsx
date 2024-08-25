@@ -1,21 +1,15 @@
-'use client'
+
 import React, { useState } from "react";
 import { Box, Typography, Button, Grid, Paper, Container } from "@mui/material";
 import FeatureCard from "./FeatureCard";
-import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
-  const navigate = useNavigate();
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
 
   const handleCardClick = (title: string) => {
     setSelectedCard(title);
     console.log(`Card "${title}" was clicked.`);
   };
-  const handleStartForFreeClick = () => {
-    navigate("../app/doc/page.tsx"); 
-  };
-
 
   return (
     <Paper
@@ -48,7 +42,7 @@ const Hero = () => {
             variant="h5"
             sx={{
               mb: 4,
-              color: "#c3dcfa",
+              color: "#f7f7f7",
               maxWidth: "800px",
               mx: "auto",
               fontSize: { xs: "1rem", sm: "1.1rem", md: "1.3rem" },
@@ -73,7 +67,6 @@ const Hero = () => {
                 boxShadow: "0 6px 8px rgba(0, 128, 255, 0.3)",
               },
             }}
-            onClick={handleStartForFreeClick}
           >
             Start for Free
           </Button>
@@ -135,7 +128,7 @@ const Hero = () => {
               borderRadius: 10,
               p: 4,
               mt: 4,
-              height: "calc(3 * 100%)", 
+              height: "calc(3 * 100%)",
               maxWidth: "1200px",
               mx: "auto",
               display: "flex",
@@ -155,7 +148,8 @@ const Hero = () => {
                 }}
               >
                 Dive into detailed call transcripts with ease. Uncover insights
-                and track performance to refine your sales strategies with rilla ++.
+                and track performance to refine your sales strategies with rilla
+                ++.
               </Typography>
             )}
             {selectedCard === "Discuss with Comments" && (
