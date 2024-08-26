@@ -36,7 +36,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Tooltip,
@@ -54,9 +53,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import defaultImage from "../../public/placeholder-user.webp";
-import { auth, onAuthStateChanged } from "../../firebaseConfig";
+import defaultImage from "@/public/placeholder-user.webp";
+import { auth, onAuthStateChanged } from "@/firebaseConfig";
 import { User } from "firebase/auth";
 import BubbleWindow from "@/components/ui/bubblewindow";
 import CommentsUI from "@/components/ui/commentsui";
@@ -73,7 +71,6 @@ interface Comment {
   time: string;
   children: Comment[];
 }
-
 interface Bubble {
   speaker: string;
   message: string;
@@ -181,15 +178,12 @@ export default function Editor() {
     });
     return bubbles;
   }
-
   const chatBubbles = parseTranscriptToBubbles(defaultTranscript);
-
   async function addComment() {
     //API call to send the data to the backend Get response
     // Fetch new Data from DB and refresh UI
     setCommentInput("");
   }
-
   const handleSignOut = async () => {
     try {
       await auth.signOut();
@@ -202,7 +196,6 @@ export default function Editor() {
   if (!user) {
     return <div>Loading...</div>;
   }
-
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">

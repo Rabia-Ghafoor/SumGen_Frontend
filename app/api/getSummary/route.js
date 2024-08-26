@@ -1,12 +1,16 @@
 import { NextResponse } from "next/server";
 
+// Get summary
 export async function GET(req) {
-  const data = await req.json();
-  const results = await index.query({
-    topK: 3,
-    includeMetadata: true,
-    vector: embedding.data[0].embedding,
-  });
+  const { transcriptId } = await req.json(); // Assuming the request includes transcriptId
 
-  return new NextResponse(stream);
+  const response = await fetch(
+    `https://bsdhdoyb43.execute-api.us-east-1.amazonaws.com/transcripts/summary/${transcriptId}`,
+    {
+      method: "GET",
+    }
+  );
+
+  const result = await response.json();
+  return NextResponse.json(result);
 }
