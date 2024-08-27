@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   Card,
@@ -51,27 +51,41 @@ const documents = [
     description: "This is a brief description of Document 3.",
   },
 ];
+interface Transcript {
+  transcriptId: { S: string };
+  transcriptText: string;
+}
 export default function Dashboard() {
   const router = useRouter();
-  async function fetchTranscripts() {
-    try {
-      const response = await fetch(
-        "http://localhost:3000/api/GetAllTranscripts"
-      );
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json(); // Extracting JSON
+  const [transcripts, setTranscripts] = useState<Transcript[]>();
+  const [transcriptIds, setTranscriptIds] = useState<string[]>();
+  const [allIds, setAllIds] = useState<string[]>([]);
 
-      console.log(data);
-    } catch (error) {
-      console.error("There was a problem with the fetch operation:", error);
-    }
-  }
   useEffect(() => {
+    async function fetchTranscripts() {
+      try {
+        const response = await fetch(
+          "http://localhost:3000/api/GetAllTranscripts"
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setTranscripts(data);
+
+        // Collect IDs in a temporary array
+        const ids = data.map((element: Transcript) => element.transcriptId.S);
+        setAllIds(ids);
+        setTranscriptIds(ids);
+      } catch (error) {
+        console.error("There was a problem with the fetch operation:", error);
+      }
+    }
+
     fetchTranscripts();
   }, []);
-  const handleDocumentClick = (id: number) => {
+
+  const handleDocumentClick = (id: string) => {
     router.push(`/docu/${id}`);
   };
 
@@ -112,15 +126,15 @@ export default function Dashboard() {
           </div>
           <TabsContent value="tab-documents" className="mt-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {documents.map((doc) => (
+              {transcripts?.map((doc) => (
                 <Card
-                  key={doc.id}
+                  key={doc.transcriptId.S}
                   className="cursor-pointer"
-                  onClick={() => handleDocumentClick(doc.id)}
+                  onClick={() => handleDocumentClick(doc.transcriptId.S)}
                 >
                   <CardHeader>
-                    <CardTitle>{doc.title}</CardTitle>
-                    <CardDescription>{doc.description}</CardDescription>
+                    <CardTitle>{"Document"}</CardTitle>
+                    <CardDescription>{"This is a sample"}</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <Button variant="default">View Document</Button>
